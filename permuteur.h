@@ -1,11 +1,11 @@
 #ifndef _PERMUTEUR_H
-#define	_PERMUTEUR_H
+#define _PERMUTEUR_H
 
 /*!
  *
  * Les instances de cette classe sont des iterateurs sur des permutations
  * aleatoires d'un intervalle donne. Ces instances sont construites en donnant
- * un nombre entier definissant l'intervalle d'interet. Des appels successifs
+ * un npombre entier definissant l'intervalle d'interet. Des appels successifs
  * a suivant() permettent d'acceder aux elements de la premiere permutation
  * puis de la seconde et ainsi de suite.
  *
@@ -18,17 +18,17 @@
  * d'une permutation, puis d'une autre, ...
  *
  */
-class Permuteur {
-// A FAIRE : classe a completer au besoin
-// A FAIRE : les implementations dans permuteur.cpp
+class Permuteur
+{
+  // A FAIRE : classe a completer au besoin
+  // A FAIRE : les implementations dans permuteur.cpp
 
 public:
-
   /*!
    * Construit un nouveau permuteur qui retournera des nombres entiers dans
    * l'intervalle [0 .. (max-1)].
    */
-  Permuteur(int max);
+  Permuteur(int max, int method);
 
   /*!
    * Libere les ressources utilisees par ce permuteur.
@@ -40,14 +40,20 @@ public:
    */
   int suivant();
 
- private :
-  int max;
-  int* perm; // tableau de la permutation.
-  int * indices; // tableau des indices à permuter
-  int i_perm;  // indice d'avancement dans la permutation.
+  int getPermutLength();
 
+private:
+  int max;
+  int *perm;    // tableau de la permutation.
+  int *indices; // tableau des indices ï¿½ permuter
+  int i_perm;   // indice d'avancement dans la permutation.
+  int length_perm;
+
+  int factorial(int n);
+  void resetIndices(int *indices);
+  void savePermutation(int index);
+  void generateLexicography();
+  void generateRecursiveHeap(int size, int &index);
 };
 
-
-#endif	/* _PERMUTEUR_H */
-
+#endif /* _PERMUTEUR_H */
