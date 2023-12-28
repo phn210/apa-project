@@ -28,7 +28,7 @@ public:
    * Construit un nouveau permuteur qui retournera des nombres entiers dans
    * l'intervalle [0 .. (max-1)].
    */
-  Permuteur(int max, int method = 1);
+  Permuteur(int max, int method = 0);
 
   /*!
    * Libere les ressources utilisees par ce permuteur.
@@ -43,17 +43,47 @@ public:
   int getPermutLength();
 
 private:
-  int max;
-  int *perm;    // tableau de la permutation.
-  int *indices; // tableau des indices � permuter
-  int i_perm;   // indice d'avancement dans la permutation.
-  int length_perm;
+  int *perm;       // tableau de la permutation.
+  int *indices;    // tableau des indices � permuter
+  int i_perm;      // indice d'avancement dans la permutation.
+  int max;         // max element to generate.
+  int length_perm; // length of all possible permuation.
 
+  /*
+   * Calculate the factorial of n.
+   */
   int factorial(int n);
+
+  /*
+   * Reset the indices matrix.
+   */
   void resetIndices(int *indices);
+
+  /*
+   * Save the index_th permutation to permutation table.
+   */
   void savePermutation(int index);
+
+  /*
+   * Generate Permutation with Lexicography order
+   * First, find the last k: A(K) < A(K+1):
+   *    Then, find last l: A(K) < A(L)
+   *    swap(A(K), A(L)) if found K and L
+   *    Then, reverse (A(K+1), A(K+2), ..., A(N))
+   */
   void generateLexicography();
+
+  /*
+   * Using heap to generate permutations.
+   * We will keep the kth element in place and permute the remaining 0 to (k-1) elements.
+   * If k odd, swap(first, last). Else swap(index, last) (index is a counter).
+   */
   void generateRecursiveHeap(int size, int &index);
+
+  /*
+   * Similar to the last one but use a stack array to keep track of the indices.
+   */
+  void generateIterativeHeap(int size);
 };
 
 #endif /* _PERMUTEUR_H */

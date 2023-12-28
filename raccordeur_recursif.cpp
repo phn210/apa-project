@@ -7,7 +7,7 @@ int RaccordeurRecursif::calculerRaccord(MatInt2 *distances, int *coupe)
   MatInt2 *coutTable = new MatInt2(distances->nLignes(), distances->nColonnes() + 2);
   int cout = 0, optimalCout = std::numeric_limits<int>::max();
 
-  // Initialize coutTable = -1 and edge-columns to max_int
+  // Initialize coutTable = -1 and edge-columns = max(int)
   for (int y = 0; y < coutTable->nLignes(); y++)
   {
     coutTable->set(y, 0, std::numeric_limits<int>::max());
@@ -24,7 +24,7 @@ int RaccordeurRecursif::calculerRaccord(MatInt2 *distances, int *coupe)
     _calculerRaccord(distances, coutTable, x + 1, distances->nLignes() - 1);
   }
 
-  // Find optimal from the last line
+  // Find the optimal value from the last line
   int coupeX = 0;
   for (int i = 0; i < distances->nColonnes(); i++)
   {
