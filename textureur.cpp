@@ -435,6 +435,7 @@ int Textureur::bestBlockIndex(Raccordeur *raccordeur, int vg, int vh)
 
 void Textureur::doAlgo(Raccordeur *raccordeur)
 {
+    clock_t start = clock();
     // premier bloc choisi au hasard
     int c, l;
     for (l = 0; l < res_verti; l++)
@@ -471,9 +472,13 @@ void Textureur::doAlgo(Raccordeur *raccordeur)
             }
         }
     }
+    clock_t end = clock();
+    printf("Execution time: %.3fms\n", (double)(end - start) * 1000 / CLOCKS_PER_SEC);
+
     screen->DisplayImage(im_res->GetLinePtr(0), res_w, res_h);
     printf("c'est tout - cliquer dans l'image resultat pour finir\n");
     screen->Click();
+
     screen->DisplayImage(im_res->GetLinePtr(0), res_w, res_h);
     printf("c'est tout - cliquer dans l'image resultat pour finir\n");
     screen->Click();

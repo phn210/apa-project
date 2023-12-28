@@ -28,7 +28,7 @@ int RaccordeurRecursifNaif::calculerRaccord(MatInt2 *distances, int *coupe)
     }
   }
 
-  for (int i = 0; i < distances->nLignes(); i++, std::cout << std::endl)
+  for (int i = 0; i < distances->nLignes(); i++)
   {
     std::cout << coupe[i] << " ";
   }
@@ -68,7 +68,6 @@ int RaccordeurRecursifNaif::_calculerRaccord(MatInt2 *distances, int *coupe, int
     }
 
     // Return the optimal value at line y
-    std::cout << min << " ";
     return distances->get(y, x) + min;
   }
 }

@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <float.h>
 #include <limits.h>
+#include <time.h>
 
 #include "image_4b.h"
 #include "x11display_code.h"
