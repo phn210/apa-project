@@ -33,6 +33,10 @@ Permuteur::Permuteur(int _max, int method)
     generateRecursiveHeap(max, index);
     break;
 
+  case 2:
+    generateIterativeHeap(max);
+    break;
+
   default:
     break;
   }
@@ -92,6 +96,42 @@ void Permuteur::generateRecursiveHeap(int size, int &index)
       std::swap(indices[0], indices[size - 1]);
   }
   generateRecursiveHeap(size - 1, index);
+}
+
+void Permuteur::generateIterativeHeap(int size)
+{
+  //We use stack to keep track of elements and their positions with the permutation  
+  int *stack = (int *)malloc(size * sizeof(int));
+
+  //Initialize the stack
+  for (int i = 0; i < size; i++)
+  {
+    stack[i] = 0;
+  }
+
+  int index = 0;
+  int permId = 0;
+  savePermutation(permId++);
+
+  while (index < size)
+  {
+    if (stack[index] < index)
+    {
+      if (index % 2 == 0)
+        std::swap(indices[0], indices[index]); // swap first and last if even
+      else
+        std::swap(indices[stack[index]], indices[index]); //swap current element and last if odd
+      
+      savePermutation(permId++);
+      stack[index]++;
+      index = 1;
+    } 
+    else 
+    {
+      stack[index] = 0;
+      index++;
+    }
+  }
 }
 
 void Permuteur::savePermutation(int index)
