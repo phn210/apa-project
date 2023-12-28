@@ -5,7 +5,7 @@ static Colormap cmap;
 
 void TTrueColor24Open(const char *name)
 {
-  dpy = XOpenDisplay("/private/tmp/com.apple.launchd.HDSDt5L8iy/org.xquartz:0");
+  dpy = XOpenDisplay(name);
   if (dpy == NULL)
   {
     fprintf(stderr, "XOpenDisplay %s failed\n", name);
@@ -74,7 +74,7 @@ void X11Display::open(int W, int H, const char *titre, int x, int y)
   XEvent myevent;
 
   if (dpy == NULL)
-    TTrueColor24Open("test");
+    TTrueColor24Open("");
   if (dpy == NULL)
     return;
 
