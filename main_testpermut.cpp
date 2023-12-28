@@ -4,7 +4,7 @@
 int main(int argc, char **argv)
 {
   int max = 5;
-  int method = 0;
+  int method = 1;
   Permuteur *p = new Permuteur(max, method);
   for (int i = 0; i < p->getPermutLength(); i++)
   {

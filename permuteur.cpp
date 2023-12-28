@@ -26,6 +26,8 @@ Permuteur::Permuteur(int _max, int method)
   }
 }
 
+Permuteur::~Permuteur() {}
+
 void Permuteur::generateLexicography()
 {
   int index = 0, k, l;
