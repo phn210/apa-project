@@ -28,6 +28,7 @@ public:
    * Construit un nouveau permuteur qui retournera des nombres entiers dans
    * l'intervalle [0 .. (max-1)].
    */
+  Permuteur(int max);
   Permuteur(int max, int method);
 
   /*!

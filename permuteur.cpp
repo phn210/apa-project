@@ -1,5 +1,17 @@
 #include "permuteur.h"
 #include <utility>
+#include <cstdlib>
+
+Permuteur::Permuteur(int max)
+{
+    max = max;
+    length_perm = factorial(max)*max;
+    indices = (int*) malloc(max*sizeof(int));
+    perm = (int*) malloc(length_perm*sizeof(int));
+
+    resetIndices(indices);
+    generateLexicography();
+}
 
 Permuteur::Permuteur(int _max, int method)
 {
@@ -24,6 +36,12 @@ Permuteur::Permuteur(int _max, int method)
   default:
     break;
   }
+}
+
+Permuteur::~Permuteur()
+{
+    delete[] indices;
+    delete[] perm;
 }
 
 void Permuteur::generateLexicography()
